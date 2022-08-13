@@ -98,7 +98,7 @@ def add(property: str, value: str, key: str = "") -> None: # function for adding
         else:
             scd_lock[property].pop(scd_lock[property].index(value))
             scd_lock[property] = [value] + scd_lock[property]
-        scd_lock[property] = scd_lock[property][:min(len(scd_lock[property]), 3)]
+        scd_lock[property] = scd_lock[property][:min(len(scd_lock[property]), 25)]
     with open(f"{APP_PATH}\\scd-lock.json", 'w') as sl:
         sl.write(json.dumps(scd_lock, ensure_ascii=False, indent=4))
 

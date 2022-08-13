@@ -4,16 +4,16 @@
 
 ## Using
 
-`{path}` — same as `cd {path}`
+`scd {path}` — same as `cd {path}`
 
-`init` — init config file
+`scd init` — init config file
 
-`clear {list name}` — clear some list
+`scd clear {list name}` — clear some list
 
-`{list name}` — show some list
+`scd {list name}` — show some list
 
-`from {list name} {index}` — go from some list
+`scd from {list name} {index}` — go from some list
 
-`bind {key} {path}` — bind some path
+`scd bind {key} {path}` — bind some path
 
-`save {path}` — save some path
+`scd save {path}` — save some path

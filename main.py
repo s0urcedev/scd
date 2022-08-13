@@ -25,16 +25,6 @@ def init() -> None: # function for initing scd-lock.json
     with open(f"{APP_PATH}\\scd-lock.json", 'w') as sl:
         sl.write(json.dumps({"binded": {}, "saved": [], "recent": []}, ensure_ascii=False, indent=4))
 
-def help() -> None: # function with help messages
-    print("echo Hello, I'm scd")
-    print("echo What I can do:")
-    print("echo `scd {path}` — same as `cd {path}`")
-    print("echo `scd init` — init config file")
-    print("echo `scd {list name}` — show some list")
-    print("echo `scd from {list name} {index}` — go from some list")
-    print("echo `scd bind {key} {path}` — bind some path")
-    print("echo `scd save {path}` — save some path")
-
 def create_if_not() -> None: # function for creating scd-lock.json if there is no one
     if not os.path.exists(f"{APP_PATH}\\scd-lock.json") or is_empty(f"{APP_PATH}\\scd-lock.json"):
         init()
@@ -45,10 +35,20 @@ def get(property: str) -> dict | list: # function for getting some property
         scd_lock: dict = json.loads(sl.read())
     return scd_lock[property]
 
+def help() -> None: # function with help messages
+    print("echo Hello, I'm scd")
+    print("echo What I can do:")
+    print("echo `scd {path}` — same as `cd {path}`")
+    print("echo `scd init` — init config file")
+    print("echo `scd {list name}` — show some list")
+    print("echo `scd from {list name} {index}` — go from some list")
+    print("echo `scd bind {key} {path}` — bind some path")
+    print("echo `scd save {path}` — save some path")
+
 def show(property: str) -> None: # function for showing some property
     scd_lock_property: dict | list = get(property)
     if len(scd_lock_property) == 0:
-        print("echo Saved list is empty")
+        print(f"echo {property.capitalize()} list is empty")
     else:
         if isinstance(scd_lock_property, dict):
             print("\n".join(list(map(lambda x, i: f"echo [{i}] {x}: {scd_lock_property[x]}", scd_lock_property, [i for i in range(1, len(scd_lock_property) + 1)]))))
@@ -126,14 +126,14 @@ if __name__ == "__main__":
             match sys.argv[1]:
                 case "init" | "clear": # 'scd init' | 'scd clear'
                     init()
-                case "binded":  # 'scd binded'
-                    binded()
-                case "saved":  # 'scd saved'
-                    saved()
-                case "recent":  # 'scd recent'
-                    recent()
                 case "help": # 'scd help'
                     help()
+                case "binded": # 'scd binded'
+                    binded()
+                case "saved": # 'scd saved'
+                    saved()
+                case "recent": # 'scd recent'
+                    recent()
                 case _:
                     binded_dict: dict = get('binded')
                     if sys.argv[1] in list(binded_dict.keys()):

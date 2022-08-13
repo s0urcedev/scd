@@ -1,0 +1,1 @@
+@ for /f "tokens=*" %%o in ('scd_script.exe %*') do @ %%o

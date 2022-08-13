@@ -25,6 +25,16 @@ def init() -> None: # function for initing scd-lock.json
     with open(f"{APP_PATH}\\scd-lock.json", 'w') as sl:
         sl.write(json.dumps({"binded": {}, "saved": [], "recent": []}, ensure_ascii=False, indent=4))
 
+def help() -> None: # function with help messages
+    print("echo Hello, I'm scd")
+    print("echo What I can do:")
+    print("echo `scd {path}` — same as `cd {path}`")
+    print("echo `scd init` — init config file")
+    print("echo `scd {list name}` — show some list")
+    print("echo `scd from {list name} {index}` — go from some list")
+    print("echo `scd bind {key} {path}` — bind some path")
+    print("echo `scd save {path}` — save some path")
+
 def create_if_not() -> None: # function for creating scd-lock.json if there is no one
     if not os.path.exists(f"{APP_PATH}\\scd-lock.json") or is_empty(f"{APP_PATH}\\scd-lock.json"):
         init()
@@ -123,8 +133,7 @@ if __name__ == "__main__":
                 case "recent":  # 'scd recent'
                     recent()
                 case "help": # 'scd help'
-                    print("echo Hello, I'm scd")
-                    print("echo \nWhat I can do:\ninit — init clear config file\nclear — clear config file\nclear saved — clear saved in config file\nclear recent — clear recent in config file")
+                    help()
                 case _:
                     binded_dict: dict = get('binded')
                     if sys.argv[1] in list(binded_dict.keys()):

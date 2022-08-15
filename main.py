@@ -92,6 +92,7 @@ def help() -> None: # function with help messages
     print("echo `scd init` — init config file")
     print("echo `scd {list name}` — show some list")
     print("echo `scd from {list name} {index}` — go from some list")
+    print("echo `scd delete {list name} {index}` — delete from some list")
     print("echo `scd bind {key} {path}` — bind some path")
     print("echo `scd save {path}` — save some path")
 
@@ -130,15 +131,13 @@ def from_recent(index: int) -> None: # function for changing directory from rece
 
 
 def delete_binded(index: int) -> None: # function for deleting some path from binded
-    binded_dict: dict = get('binded')
-    delete('binded', list(binded_dict.keys())[index - 1])
+    binded_dict_keys: list = list(get('binded').keys())
+    delete('binded', binded_dict_keys[index - 1])
 
 def delete_saved(index: int) -> None: # function for deleting some path from saved
-    saved_list: list = get('saved')
     delete('saved', index - 1)
 
 def delete_recent(index: int) -> None: # function for deleting some path from recent
-    recent_list: list = get('recent')
     delete('recent', index - 1)
 
 

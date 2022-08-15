@@ -14,6 +14,8 @@
 
 `scd from {list name} {index}` — go from some list
 
+`scd delete {list name} {index}` — delete from some list
+
 `scd bind {key} {path}` — bind some path
 
 `scd save {path}` — save some path
